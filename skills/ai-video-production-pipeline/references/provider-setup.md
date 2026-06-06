@@ -30,6 +30,33 @@ npx hyperframes render
 
 Run the exact command supported by the local `hyperframes.json` or package scripts.
 
+## HyperFrames TTS
+
+HyperFrames TTS is the preferred voiceover path for this skill.
+
+Use it for:
+
+- Screen-demo narration.
+- Host audio.
+- Scratch reads while timing a script.
+- Final voiceover unless the user explicitly asks for another TTS provider or supplies recorded audio.
+
+Common commands:
+
+```bash
+npx hyperframes tts --list
+npx hyperframes tts "Text here" --voice af_nova --output audio/scene-01.wav
+npx hyperframes tts scripts/scene-01.txt --voice af_heart --output audio/scene-01-af-heart.wav
+```
+
+Production pattern:
+
+- Split narration into short files by scene or section.
+- Use consistent filenames, such as `video-01-section-03-song-generation-af-heart.wav`.
+- Generate one sample voice first before a full batch.
+- Keep the text source next to the audio output so edits can be regenerated cleanly.
+- Use the generated audio duration to time HyperFrames scenes and captions.
+
 ## HeyGen
 
 HeyGen access is optional and may require the user to provide an API key, CLI login, or account access.
@@ -43,7 +70,8 @@ Use HeyGen for:
 Production pattern:
 
 - Break scripts into 12-30 second host chunks.
-- Generate a small voice/avatar test before the full set.
+- Prefer HyperFrames TTS for narration first; use HeyGen to create lipsynced avatar video from the approved chunk text/audio workflow.
+- Generate a small avatar test before the full set.
 - Keep each clip filename tied to a scene number.
 - Verify that the avatar image matches the approved source before generating a batch.
 

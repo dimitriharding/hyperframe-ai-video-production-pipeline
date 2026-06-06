@@ -53,7 +53,7 @@ Columns:
 - **Visuals and cues**: timecode, route, screen action, overlay, audio cue, capture note.
 - **Voiceover**: exact narration or "no narration, let audio play."
 
-For host/avatar chunks, label the voiceover as `HeyGen chunk candidate`. For screen-demo narration, label it as `VO only` unless the avatar should remain picture-in-picture.
+For host/avatar chunks, label the voiceover as `HyperFrames TTS + HeyGen lipsync candidate`. For screen-demo narration, label it as `HyperFrames TTS VO only` unless the avatar should remain picture-in-picture.
 
 ## Capture Map
 

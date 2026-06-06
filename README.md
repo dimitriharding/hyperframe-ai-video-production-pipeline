@@ -7,6 +7,7 @@ Codex skill for planning and producing AI-assisted product videos with HyperFram
 - Plans product demo, tutorial, launch, and educational videos.
 - Downloads and analyzes reference videos with `yt-dlp`, `ffmpeg`, and `ffprobe`.
 - Creates two-column scripts, capture maps, asset manifests, and QA checklists.
+- Prefers HyperFrames TTS for narration, scratch reads, and final voiceover.
 - Guides HyperFrames composition and render verification.
 - Supports HeyGen avatar/lipsync workflows with short, manageable voiceover chunks.
 - Supports optional fal video generation or upscaling when an API key is available.

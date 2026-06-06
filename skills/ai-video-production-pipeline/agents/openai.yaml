@@ -2,6 +2,6 @@ interface:
   display_name: "AI Video Production Pipeline"
   short_description: "Plan, capture, generate, and render product videos"
   brand_color: "#2563EB"
-  default_prompt: "Use $ai-video-production-pipeline to plan and produce a product demo video with reference analysis, screen capture, avatar clips, and HyperFrames."
+  default_prompt: "Use $ai-video-production-pipeline to plan and produce a product demo video with reference analysis, screen capture, HyperFrames TTS voiceover, avatar clips, and HyperFrames."
 policy:
   allow_implicit_invocation: true

@@ -1,6 +1,6 @@
 ---
 name: ai-video-production-pipeline
-description: Use when creating product demo videos, educational YouTube videos, app walkthroughs, reference-video breakdowns, avatar/lipsync clips, screen-capture edits, AI-generated image/video assets, or HyperFrames compositions. Covers HyperFrames, HeyGen lipsync, optional fal video models, Codex imagegen assets, yt-dlp reference analysis, Playwright/browser capture, script planning, rendering, and QA.
+description: Use when creating product demo videos, educational YouTube videos, app walkthroughs, reference-video breakdowns, avatar/lipsync clips, screen-capture edits, AI-generated image/video assets, voiceovers, or HyperFrames compositions. Covers HyperFrames composition and preferred HyperFrames TTS, HeyGen lipsync, optional fal video models, Codex imagegen assets, yt-dlp reference analysis, Playwright/browser capture, script planning, rendering, and QA.
 metadata:
   short-description: Build AI-assisted product videos end to end
 ---
@@ -17,6 +17,8 @@ API-key-dependent services are optional. If a key or provider login is missing, 
 - For product walkthroughs, show the actual workflow. Do not summarize clicks that should be visible on screen.
 - For reference videos, analyze structure and pacing, but write original scripts and original visuals.
 - For long videos, use short host/avatar chunks, usually 12-30 seconds, and let walkthrough or playback sections breathe.
+- Prefer HyperFrames TTS for narration, host audio, scratch reads, and final voiceover unless the user explicitly requests another TTS provider or supplies recorded audio.
+- Use HeyGen for lipsync/avatar video clips, not as the default narration engine. When possible, generate or approve the voiceover with HyperFrames TTS first, then use the same chunk text/audio timing for avatar production.
 - Do one representative sample first before scaling to a batch or series.
 - Keep secrets out of docs, logs, filenames, screenshots, and final responses.
 - Verify renders with `ffprobe` plus visual contact sheets or screenshots before calling a video done.
@@ -42,7 +44,8 @@ API-key-dependent services are optional. If a key or provider login is missing, 
 
 4. **Assets**
    - Use Codex imagegen for still images, thumbnails, host backdrops, product metaphors, and style frames.
-   - Use HeyGen for host/avatar lipsync clips when the user wants a speaking avatar. Chunk scripts into manageable clips and keep filenames tied to scene numbers.
+   - Use HyperFrames TTS first for voiceover and narration. Generate the voice list with `npx hyperframes tts --list`, then render each approved chunk to a named audio file.
+   - Use HeyGen for host/avatar lipsync clips when the user wants a speaking avatar. Chunk scripts into manageable clips, keep filenames tied to scene numbers, and avoid using HeyGen as the primary TTS source unless requested.
    - Use fal or other video models for optional b-roll, cinematic transitions, abstract clips, and variations. If no API key is available, produce prompts and placeholders.
    - Keep an asset manifest with source, generated output, prompt, provider, model, duration, and status.
 
@@ -72,8 +75,8 @@ API-key-dependent services are optional. If a key or provider login is missing, 
 
 ## Tool Routing
 
-- **HyperFrames by HeyGen**: final HTML video composition, animation, captions, render workflow.
-- **HeyGen**: lipsync/avatar host clips and talking-head bridge segments. Optional provider access.
+- **HyperFrames by HeyGen**: preferred TTS voiceover generation, final HTML video composition, animation, captions, and render workflow.
+- **HeyGen**: lipsync/avatar host clips and talking-head bridge segments after the script and voiceover chunks are approved. Optional provider access.
 - **fal**: optional AI video model clips, upscaling, visual b-roll, or style variants. Optional API key.
 - **Codex imagegen**: still image generation and image edits directly in Codex.
 - **Browser / Playwright**: app exploration, login flows, screenshots, and screen-capture planning.
@@ -89,7 +92,7 @@ API-key-dependent services are optional. If a key or provider login is missing, 
 ## Completion Checklist
 
 - The plan states format, duration, audience, CTA, and production stack.
-- The script is broken into manageable voiceover/avatar chunks.
+- The script is broken into manageable voiceover/avatar chunks, with HyperFrames TTS marked as the default audio provider.
 - Product screens show real actions, not just generic b-roll.
 - Reference influence is structural only and original in wording.
 - API-key-dependent outputs are either generated or clearly marked pending.
